@@ -35,3 +35,8 @@ The repository contains example data for each step of the pipeline. These data a
 - ** Input_step2**: Contains data processed in Step 1, used as input for Step 2.
 - ** Input_step3**: Contains data processed in Step 2, used as input for Step 3.
 - ** Output_step3**: Contains the imputed scHi-C data, which is the output of Step 3.
+- ** Demo usage**:
+  ```bash
+  Rscript Strat_cor.r --input_dir "/example_data/Input_step1" --output_dir "/example_data/Input_step2" --stage "BandNorm" --genome "hg19" --mcore 30
+  python Nearest_cells.py --input_dir "/example_data/Input_step2" --output_dir "/example_data/Input_step3" --cell_num 620 --label_dir "/example_data/label_info.json" --genome_type "hg19"
+  python scHi-C-INN.py --base_dir "/example_data" --inputs "Input_step3" --outputs "scHi-C-INN" --cell_num 620 --genome_type "hg19" --correlation_dir "/example_data/Input_step3"
