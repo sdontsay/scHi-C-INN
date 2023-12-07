@@ -1,6 +1,6 @@
 # scHi-C-INN
 
-`scHi-C-INN` (Single-Cell Hi-C Imputation Neural Network) is a computational pipeline designed for processing and imputing single-cell Hi-C data. This project consists of three primary steps, each corresponding to a script that performs a specific task in the data processing and imputation workflow. The project aims to transform raw scHi-C data into imputed values, enhancing the utility and interpretability of single-cell genomic interactions.
+`scHi-C-INN` (Single-Cell Hi-C Imputation Nearest Neighbor) is a computational pipeline designed for processing and imputing single-cell Hi-C data. This project consists of three primary steps, each corresponding to a script that performs a specific task in the data processing and imputation workflow. The project aims to transform normalized scHi-C data into imputed data, enhancing the utility and interpretability of single-cell genomic interactions.
 
 ## Project Workflow
 
@@ -17,14 +17,14 @@
 - ** Description**: This Python script extracts the four nearest neighbors based on the correlation coefficients computed in Step 1. This step narrows down the focus to the most relevant cells for further imputation.
 - ** Usage**:
   ```bash
-  python Nearest_cells.py --base_dir "/path/to/base" --cell_num 16707 --genome_type "hg19" --correlation_dir "/path/to/correlation/results"
+  python Nearest_cells.py --base_dir "/path/to/base" --cell_num 620 --genome_type "hg19" --correlation_dir "/path/to/correlation/results"
 
 ### Step 3: scHi-C Data Imputation
 - ** Script Name**: scHi-C-INN.py
-- ** Description**: The final Python script in the pipeline, it uses the data processed in the previous steps to impute new scHi-C data, achieving the primary goal of the project.
+- ** Description**: The final Python script in the pipeline, uses the data processed in the previous steps to impute new scHi-C data, achieving the primary goal of the project.
 - ** Usage**:
   ```bash
-  python scHi-C-INN.py --base_dir "/path/to/base" --cell_num 16707 --genome_type "hg19"
+  python scHi-C-INN.py --base_dir "/path/to/base" --cell_num 620 --genome_type "hg19"
 
 ## Data Format
 The input files for this project should be in the form of contact matrices, with values separated by a tab delimiter. Example data for demonstration purposes is available in the repository, located in the folders "Input_step1", "Input_step2", "Input_step3", and "Output_step3". Note that only chromosome 1 (chr1) data is provided as a demo.
