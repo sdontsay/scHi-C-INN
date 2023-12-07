@@ -13,16 +13,16 @@
   Rscript Strat_cor.r --input_dir "/path/to/input" --output_dir "/path/to/output" --stage "your_stage" --genome "hg19" --mcore 30
 
 ### Step 2: Nearest Neighbor Extraction
-- ** Script Name**: Nearest_cells.py
-- ** Description**: This Python script extracts the four nearest neighbors based on the correlation coefficients computed in Step 1. This step narrows down the focus to the most relevant cells for further imputation.
-- ** Usage**:
+- **Script Name**: Nearest_cells.py
+- **Description**: This Python script extracts the four nearest neighbors based on the correlation coefficients computed in Step 1. This step narrows down the focus to the most relevant cells for further imputation.
+- **Usage**:
   ```bash
   python Nearest_cells.py --input_dir "/path/to/input" --output_dir "/path/to/output" --cell_num 620 --label_dir "/path/to/label" --genome_type "hg19"
 
 ### Step 3: scHi-C Data Imputation
-- ** Script Name**: scHi-C-INN.py
-- ** Description**: The final Python script in the pipeline, uses the data processed in the previous steps to impute new scHi-C data, achieving the primary goal of the project.
-- ** Usage**:
+- **Script Name**: scHi-C-INN.py
+- **Description**: The final Python script in the pipeline, uses the data processed in the previous steps to impute new scHi-C data, achieving the primary goal of the project.
+- **Usage**:
   ```bash
   python scHi-C-INN.py --base_dir "/path/to/base" --inputs "input_dir" --outputs "scHi-C-INN" --cell_num 620 --genome_type "hg19" --correlation_dir "/path/to/input_step3"
 
@@ -31,11 +31,11 @@ The input files for this project should be in the form of contact matrices, with
 
 ## Example Data
 The repository contains example data for each step of the pipeline. These data are intended to illustrate the expected input and output formats and to provide a basis for testing and understanding the scripts.
-- ** Input_step1**: Contains raw scHi-C data for Step 1.
-- ** Input_step2**: Contains data processed in Step 1, used as input for Step 2.
-- ** Input_step3**: Contains data processed in Step 2, used as input for Step 3.
-- ** Output_step3**: Contains the imputed scHi-C data, which is the output of Step 3.
-- ** Demo usage**:
+- **Input_step1**: Contains raw scHi-C data for Step 1.
+- **Input_step2**: Contains data processed in Step 1, used as input for Step 2.
+- **Input_step3**: Contains data processed in Step 2, used as input for Step 3.
+- **Output_step3**: Contains the imputed scHi-C data, which is the output of Step 3.
+- **Demo usage**:
   ```bash
   Rscript Strat_cor.r --input_dir "/example_data/Input_step1" --output_dir "/example_data/Input_step2" --stage "BandNorm" --genome "hg19" --mcore 30
   python Nearest_cells.py --input_dir "/example_data/Input_step2" --output_dir "/example_data/Input_step3" --cell_num 620 --label_dir "/example_data/label_info.json" --genome_type "hg19"
