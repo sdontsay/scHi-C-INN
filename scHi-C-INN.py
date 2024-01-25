@@ -13,7 +13,7 @@ def get_chromosomes(genome_type):
     else:
         raise ValueError("Unsupported genome type. Choose from 'hg19', 'hg38', 'mm9', 'mm10'.")
 
-def process_chromosome(ch, base_dir, outputs, inputs, correlation_dir, chrlen_dic, cell_num):
+def process_chromosome(ch, base_dir, outputs, inputs, correlation_dir, chrlen_dic, cell_num, num_neighbors):
     output_folder = os.path.join(base_dir, outputs, ch)
     os.makedirs(output_folder, exist_ok=True)
     hic_who = pd.read_csv(os.path.join(correlation_dir, f'cell_inter_{ch}.csv'))
@@ -23,21 +23,14 @@ def process_chromosome(ch, base_dir, outputs, inputs, correlation_dir, chrlen_di
         f = np.loadtxt(os.path.join(base_dir, f'{inputs}/{ch}/{ch}_cell{i}_{inputs}.txt'))
         f = f.reshape((size,size))
         xs, ys = np.where(f == 0)
-        res = hic_who[hic_who.cell1 == i]['cell2'].values[:4]
-        
+        res = hic_who[hic_who.cell1 == i]['cell2'].values[:num_neighbors]
+
         if len(res) > 0:
-            a = np.loadtxt(os.path.join(base_dir, f'{inputs}/{ch}/{ch}_cell{res[0]}_{inputs}.txt'))
-            b = np.loadtxt(os.path.join(base_dir, f'{inputs}/{ch}/{ch}_cell{res[1]}_{inputs}.txt'))
-            c = np.loadtxt(os.path.join(base_dir, f'{inputs}/{ch}/{ch}_cell{res[2]}_{inputs}.txt'))
-            d = np.loadtxt(os.path.join(base_dir, f'{inputs}/{ch}/{ch}_cell{res[3]}_{inputs}.txt'))
-            a = a.reshape((size,size))
-            b = b.reshape((size,size))
-            c = c.reshape((size,size))
-            d = d.reshape((size,size))
+            neighbor_matrices = [np.loadtxt(os.path.join(base_dir, f'{inputs}/{ch}/{ch}_cell{res[j]}_{inputs}.txt')).reshape((size, size)) for j in range(len(res))]
 
             for x, y in zip(xs, ys):
                 if np.abs(x - y) < 10:
-                    f[x, y] = np.mean([a[x, y], b[x, y], c[x, y], d[x, y]])
+                    f[x, y] = np.mean([matrix[x, y] for matrix in neighbor_matrices])
         
         np.savetxt(os.path.join(output_folder, f'{ch}_cell{i}_{outputs}.txt'), f)
 
@@ -49,6 +42,7 @@ if __name__ == "__main__":
     parser.add_argument("--outputs", required=True, help="Output type")
     parser.add_argument("--inputs", required=True, help="Input type")
     parser.add_argument("--correlation_dir", required=True, help="Directory with correlation coefficient results")
+    parser.add_argument("--num_neighbors", type=int, required=True, help="Number of neighbors for imputation")
 
     args = parser.parse_args()
 
@@ -66,4 +60,4 @@ if __name__ == "__main__":
     chrlen_dic = {chrom[i]: chr_len[i] for i in range(len(chrom))}
 
     with Pool() as pool:
-        pool.map(partial(process_chromosome, base_dir=args.base_dir, outputs=args.outputs, inputs=args.inputs, correlation_dir=args.correlation_dir, chrlen_dic=chrlen_dic, cell_num=args.cell_num), chrom)
+        pool.map(partial(process_chromosome, base_dir=args.base_dir, outputs=args.outputs, inputs=args.inputs, correlation_dir=args.correlation_dir, chrlen_dic=chrlen_dic, cell_num=args.cell_num, num_neighbors=args.num_neighbors), chrom)
