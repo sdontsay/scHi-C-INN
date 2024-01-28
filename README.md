@@ -5,10 +5,10 @@
 ## Prerequisites
 The script requires the following to be installed:
 
-- Python (3.x) \\
+- Python (3.x)  
 Dependencies: `NumPy`, `Pandas`
 
-- R (4.x) \\
+- R (4.x)  
 Dependencies: `hicrep`, `tseries`, `RJSONIO`, `stringr`, `combinat`
 
 ## Project Workflow
