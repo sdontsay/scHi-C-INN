@@ -2,6 +2,12 @@
 
 `scHi-C-INN` (Single-Cell Hi-C Imputation Nearest Neighbor) is a computational pipeline designed for processing and imputing single-cell Hi-C data. This project consists of three primary steps, each corresponding to a script that performs a specific task in the data processing and imputation workflow. The project aims to transform normalized scHi-C data into imputed data, enhancing the utility and interpretability of single-cell genomic interactions.
 
+## Prerequisites
+The script requires the following to be installed:
+
+- Python (3.x)
+- NumPy
+
 ## Project Workflow
 
 ### Step 1: Correlation Coefficient Calculation
@@ -39,4 +45,4 @@ The repository contains example data for each step of the pipeline. These data a
   ```bash
   Rscript Strat_cor.r --input_dir "/example_data/Input_step1" --output_dir "/example_data/Input_step2" --stage "BandNorm" --genome "hg19" --mcore 30
   python Nearest_cells.py --input_dir "/example_data/Input_step2" --output_dir "/example_data/Input_step3" --cell_num 620 --label_dir "/example_data/label_info.json" --genome_type "hg19"
-  python scHi-C-INN.py --base_dir "/example_data" --inputs "Input_step3" --outputs "scHi-C-INN" --cell_num 620 --genome_type "hg19" --correlation_dir "/example_data/Input_step3"
+  python scHi-C-INN.py --base_dir "/example_data" --inputs "Input_step3" --outputs "scHi-C-INN" --cell_num 620 --genome_type "hg19" --correlation_dir "/example_data/Input_step3" --num_neighbors 4
