@@ -6,14 +6,10 @@
 The script requires the following to be installed:
 
 - Python (3.x)
-- NumPy
+Dependencies: `NumPy`, `pandas`
 
-- R (4.10)
-- hicrep
-- tseries
-- RJSONIO
-- stringr
-- combinat
+- R (4.x)
+Dependencies: `hicrep`, `tseries`, `RJSONIO`, `stringr`, `combinat`
 
 ## Project Workflow
 
