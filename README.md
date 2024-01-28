@@ -8,6 +8,13 @@ The script requires the following to be installed:
 - Python (3.x)
 - NumPy
 
+- R (4.10)
+- hicrep
+- tseries
+- RJSONIO
+- stringr
+- combinat
+
 ## Project Workflow
 
 ### Step 1: Correlation Coefficient Calculation
