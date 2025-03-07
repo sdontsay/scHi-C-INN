@@ -1,0 +1,57 @@
+Auto model annual review:
+1. Executive summary
+1) Source system balance as of Sep 2024 is $1,542,738,912.00, no available balance for auto, thus the exposure is the same number
+2) Probabily remain the same model tiers: tier 2 for PD, tier 3 for LGD and ECL
+3) Probability still rated as "Fit for purpose" as the condition has been lifted
+4) 13 findings for PD with 6 closed; 10 findings for LGD with 6 closed; 6 findings for ECL with one closed
+5) no overlay applied
+6) slight model change - smoothing of UER, validated in Finding #1763603
+
+2. Review of model change log
+1) No existing model change log
+2) the smoothing was validated by MRM
+3) it is not clear whether the monitoring is based on the updated model or not
+
+3. Model performance
+1) lack of discussion about the monitoring results (such as PD rate, MEVs, and so on)
+2) not clear whether the backtesting is 9-quarter cumulative or not; not clear about the weighted basis
+3) no statistical validity testing, sensitivity testing, benchmarking analysis, discriminatory power anlaysis, stability analysis, or stationarity testing results provided
+4) PSI analysis period is largely overlapped between development and monitoring
+5) no overlays and overrides mentioned in either MDD or monitoring resutls
+
+4. Model assumptions and limitations
+1) not mentioned
+
+5. Findings
+#1: high - monitoring plan
+1) PSI benchmark and development periods overlapping
+2) monitoring on MEV independent variables
+3) LGD and ECl data representation issue
+4) annual review questionnaire errors
+5) over-prediction issue (need to be mentioned in maintext later)
+6) no threshold for coefficent stability test
+7) no plan for consumer installment unsecured available
+8) detail of testing methods 
+9) monitoring of product areas 
+
+#2: medium
+1) segment level monitoring
+2) benchmark
+3) scenario forecast of model
+4) discriminatory power
+5) data assessment
+
+#3: low
+1） ALWs (not test)
+2) model change log lacking
+3) monitoring frequency
+4) installment unsecured
+5) HPI
+
+6. Enhanced model annual review for 2024 validation cycle
+1) this is a new model, everything is aligned with the new MRM standards
+2) the assessment of any changes in product areas, business and strategy, and so on needs to be filled
+
+7. Appendix
+1) model information could be acquired in Archer or updated by MRM
+2) annual review questionnaire has been initiated
